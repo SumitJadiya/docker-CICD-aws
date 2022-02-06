@@ -1,0 +1,24 @@
+sudo : required
+
+services:
+  - docker
+
+before_install:
+  - docker build -t cicdbuild -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true cicdbuild npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  access_key_id:
+    secure: "AKIAVJA5TACTGX5SYMF2"
+  secret_access_key:
+    secure: "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"
+  region: "ap-south-1"
+  app: "docker-cicd"
+  env: "Dockercicd-env"
+  bucket_name: "elasticbeanstalk-ap-south-1-362986799270"
+  bucket_path: "docker-cicd"
+  on:
+    branch: main
