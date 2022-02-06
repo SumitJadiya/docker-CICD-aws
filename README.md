@@ -24,3 +24,6 @@ Builds the app for production to the `build` folder.
 	$ docker build -f Dockerfile.dev -t myr .
 
 	$ docker-compose up --build 
+
+
+note : travis CI for CI pipeline
